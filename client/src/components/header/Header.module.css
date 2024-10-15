@@ -1,0 +1,11 @@
+.headerContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 25px 30px;
+    justify-content: flex-end;
+}
+
+.headerContainer > p{
+    font-size: 20px;
+}
