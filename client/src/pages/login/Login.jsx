@@ -46,6 +46,7 @@ export function Login(){
 
         fetch('http://localhost:5021/api/login', {
         method: 'POST', 
+        credentials: 'include',
         headers: {
           'Content-Type' : 'application/json'
         },

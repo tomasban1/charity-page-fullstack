@@ -13,7 +13,6 @@ export async function userDetails(req, res, next) {
     }
 
     const { cookies } = req;
-    console.log(req);
 
 
     if (typeof cookies.loginToken === 'string'
@@ -29,7 +28,7 @@ export async function userDetails(req, res, next) {
                     users.created_at AS user_created_at,
                     tokens.created_at AS token_created_at
                 FROM tokens 
-                INNER JOIN users ON tokens.user_id = users.id
+                INNER JOIN users ON tokens.user_id = users.user_id
                 WHERE token = ? AND tokens.created_at >= ?;`;
             const deadLine = new Date(Date.now() - 3600 * 1000)
             const [selectResult] = await connection.execute(sql, [cookies.loginToken, deadLine]);

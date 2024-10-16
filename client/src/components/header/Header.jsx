@@ -1,10 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './Header.module.css';
 import { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalContext';
 
 export function Header(){
    const { isLoggedIn, changeLoginStatus, username, role } = useContext(GlobalContext);
+   const navigate = useNavigate();
+
+   function logout(){
+    fetch('http://localhost:5021/api/logout', {
+        credentials: 'include'
+    })
+    .then(() => {
+        changeLoginStatus(false)
+        navigate('/')
+    })
+    .catch(error => console.log(error))
+   }
    
    
     return (
@@ -20,7 +32,7 @@ export function Header(){
                 }
                 {isLoggedIn && <div>
                     <p>{username} ({role})</p>
-                    <button>Logout</button>
+                    <button onClick={logout}>Logout</button>
                     </div>}
                 
             </nav>

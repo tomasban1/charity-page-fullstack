@@ -17,7 +17,8 @@ loginApiRouter.use((req, res) => {
 });
 
 async function getLogin(req, res) {
-    console.log(req.user);
+
+
 
 
 
