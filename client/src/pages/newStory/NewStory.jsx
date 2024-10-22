@@ -51,21 +51,25 @@ export function NewStory(){
             <Header />
             {isLoggedIn &&
             <div className={styles.formContainer}>
-                <form>
+                <form onSubmit={submitForm}>
                     <h1>Submit your story</h1>
+                        {apiResponse && apiResponse.status === 'success' ? <p>{apiResponse.data}</p> : null}
+                        {apiResponse && apiResponse.status === 'error' ? <p>{apiResponse.data}</p> : null}
                     <div className={styles.formInput}>
                         <label htmlFor="story">Your story</label>
-                        <textarea required={true} rows={4} cols={50} placeholder="Write your story.." maxLength={200} id="story" name="Write your story...">
+                        {storyErr ? <p>{storyErr}</p> : null}
+                        <textarea value={story} onChange={e => setStory(e.target.value.trim())} required={true} rows={4} cols={50} placeholder="Write your story.." maxLength={200} id="story" name="Write your story...">
 
                         </textarea>          
                     </div>
                     <div className={styles.formInput}>
                         <label htmlFor="floatingInput">Upload your foto</label>
-                        <input type="file" />                   
+                        <input value={img} onChange={e => setImg(e.target.value)} type="file" />                   
                     </div>
                     <div className={styles.formInput}>
                         <label htmlFor="floatingInput">Amount of money you need to raise</label>
-                        <input className={styles.money} type="text" />
+                        {moneyErr ? <p>{moneyErr}</p> : null}
+                        <input value={money} onChange={e => setMoney(e.target.value.trim())} className={styles.money} type="text" />
                     </div>
                     <button type="submit">Post</button>
                 </form>

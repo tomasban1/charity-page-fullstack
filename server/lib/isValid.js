@@ -41,14 +41,14 @@ export function isValidStory(txt) {
     }
 
     if (txt.length < minLength) {
-        return `Teksto ilgis turi buti maziausiai ${minLength} simboliu ilgio.`
+        return false;
     }
 
     if (txt.length > maxLength) {
-        return `Teksto ilgis turi buti ne daugiau, nei ${maxLength} simboliai.`
+        return false;
     }
 
-    return '';
+    return true;
 }
 
 export function isValidMoney(money) {
